@@ -8,11 +8,11 @@ Allows you to send cleanly formatted Prowl notifications for Nagios alerts.
 
 * `prowl.pl` from http://prowl.weks.net/static/prowl.pl (included in this repo)
 * Perl modules
-** LWP::UserAgent
-** Crypt::SSLeay
+  * LWP::UserAgent
+  * Crypt::SSLeay
 * bash
-** grep
-** paste
+  * grep
+  * paste
 
 # Use
 
