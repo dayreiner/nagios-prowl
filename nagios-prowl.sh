@@ -3,7 +3,7 @@
 NAGIOSNAME="Nagios"
 PROWL_PROVIDERKEY="<GET_THIS_KEY_FROM_PROWLAPP.COM>"
 URLBASE="https://localhost/nagios/cgi-bin"
-PROWLPLPATH="/usr/local/sbin/prowl.pl"
+PROWLPLPATH="/usr/local/bin/prowl.pl"
 
 # End of configuration options
 

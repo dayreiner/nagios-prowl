@@ -24,16 +24,16 @@ Allows you to send cleanly formatted Prowl notifications for Nagios alerts.
   * Change `PROWLPLPATH` to the absolute path for `prowl.pl`
 * Set mode for `nagios-prowl.sh` and `prowl.pl` to 0555, or something more restrictive
 * In Nagios:
-  * Add the following two commands:
+  * Add the following two commands making sure that the paths to `nagios-prowl.sh` are correct:
 ```
     define command {
         command_name notify-host-by-prowl
-        command_line /opt/ops/nagios-prowl.sh "$LONGDATETIME$" "Host" "$NOTIFICATIONTYPE$" "$HOSTSTATE$" "$HOSTNAME$" "$HOSTDESC$" "$HOSTOUTPUT$" -- $_CONTACTPROWL_APIKEYS$
+        command_line /usr/local/bin/nagios-prowl.sh "$LONGDATETIME$" "Host" "$NOTIFICATIONTYPE$" "$HOSTSTATE$" "$HOSTNAME$" "$HOSTDESC$" "$HOSTOUTPUT$" -- $_CONTACTPROWL_APIKEYS$
     }
     
     define command {
         command_name notify-service-by-prowl
-        command_line /opt/ops/nagios-prowl.sh "$LONGDATETIME$" "Service" "$NOTIFICATIONTYPE$" "$SERVICESTATE$" "$HOSTNAME$/$SERVICEDESC$" "$SERVICEDESC$" "$SERVICEOUTPUT$" -- $_CONTACTPROWL_APIKEYS$
+        command_line /usr/local/bin/nagios-prowl.sh "$LONGDATETIME$" "Service" "$NOTIFICATIONTYPE$" "$SERVICESTATE$" "$HOSTNAME$/$SERVICEDESC$" "$SERVICEDESC$" "$SERVICEOUTPUT$" -- $_CONTACTPROWL_APIKEYS$
     }
 ```
   * Add the following to contact records you'd like Prowl notifications for:
