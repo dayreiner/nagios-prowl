@@ -68,6 +68,7 @@ if (!exists($options{'apikey'}) && !exists($options{'apikeyfile'})) {
 $options{'application'} =~ s/([^A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg;
 $options{'event'} =~ s/([^A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg;
 $options{'notification'} =~ s/([^A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg;
+$options{'url'} =~ s/([^A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg;
 
 # Generate our HTTP request.
 my ($userAgent, $request, $response, $requestURL);
