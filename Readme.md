@@ -4,6 +4,11 @@
 
 Allows you to send cleanly formatted Prowl notifications for Nagios alerts.
 
+## Todo
+
+* Remove the dependency on `prowl.pl`
+* Integrate everything into a single file
+
 ## Requirements
 
 * `prowl.pl` from http://prowl.weks.net/static/prowl.pl (included in this repo)
