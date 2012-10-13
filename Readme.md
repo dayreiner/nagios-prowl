@@ -6,39 +6,31 @@ Allows you to send cleanly formatted Prowl notifications for Nagios alerts.
 
 ## Todo
 
-* Remove the dependency on `prowl.pl`
-* Integrate everything into a single file
-
 ## Requirements
 
-* `prowl.pl` from http://prowl.weks.net/static/prowl.pl (included in this repo)
 * Perl modules
   * LWP::UserAgent
   * Crypt::SSLeay
-* bash
-  * grep
-  * paste
 
 # Use
 
-* Grab `nagios-prowl.sh` and `prowl.pl`.  Put them somewhere nice.
-* Open `nagios-prowl.sh` in your favorite editor:
-  * Change `NAGIOSNAME` to something that will identify messages from this source.
-  * Change `PROWL_PROVIDERKEY` to the provider key you created at http://prowlapp.com/
-  * Change `URLBASE` to the URL for the Nagios cgi-bin. Something like "http://localhost/nagios/cgi-bin".
-  * Change `PROWLPLPATH` to the absolute path for `prowl.pl`
-* Set mode for `nagios-prowl.sh` and `prowl.pl` to 0555, or something more restrictive
+* Grab `nagios-prowl.pl` and put them somewhere nice.
+* Set mode for `nagios-prowl.pl` to 0555, or something more restrictive (0500
+  maybe).
 * In Nagios:
-  * Add the following two commands making sure that the paths to `nagios-prowl.sh` are correct:
+  * Add the following two commands making sure that the paths to
+  `nagios-prowl.pl` are correct. If you have a provider API key (and you
+  should), be sure to fill it in. If you don't, remove the `-p <PROVIDER_KEY>`
+  bit from each command.
 ```
     define command {
         command_name notify-host-by-prowl
-        command_line /usr/local/bin/nagios-prowl.sh "$LONGDATETIME$" "Host" "$NOTIFICATIONTYPE$" "$HOSTSTATE$" "$HOSTNAME$" "$HOSTDESC$" "$HOSTOUTPUT$" -- $_CONTACTPROWL_APIKEYS$
+        command_line /usr/local/bin/nagios-prowl.pl -p <PROVIDER_KEY> -u "<URL_TO_NAGIOS_CGI-BIN>" -t "$LONGDATETIME$" -N "$NOTIFICATIONTYPE$" -s "$HOSTSTATE$" -H "$HOSTNAME$" -o "$HOSTOUTPUT$" -a "$_CONTACTPROWL_APIKEYS$"
     }
     
     define command {
         command_name notify-service-by-prowl
-        command_line /usr/local/bin/nagios-prowl.sh "$LONGDATETIME$" "Service" "$NOTIFICATIONTYPE$" "$SERVICESTATE$" "$HOSTNAME$/$SERVICEDESC$" "$SERVICEDESC$" "$SERVICEOUTPUT$" -- $_CONTACTPROWL_APIKEYS$
+        command_line /usr/local/bin/nagios-prowl.pl -p <PROVIDER_KEY> -u "<URL_TO_NAGIOS_CGI-BIN>" -t "$LONGDATETIME$" -N "$NOTIFICATIONTYPE$" -s "$SERVICESTATE$" -H "$HOSTNAME$" -S "$SERVICEDESC$" -o "$HOSTOUTPUT$" -a "$_CONTACTPROWL_APIKEYS$"
     }
 ```
   * Add the following to contact records you'd like Prowl notifications for:
@@ -49,3 +41,4 @@ Allows you to send cleanly formatted Prowl notifications for Nagios alerts.
         _prowl_apikeys <KEY>[, <KEY>...]
     }
 ```
+ 
