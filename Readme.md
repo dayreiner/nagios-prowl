@@ -21,7 +21,8 @@ Allows you to send cleanly formatted Prowl notifications for Nagios alerts.
   * Add the following two commands making sure that the paths to
   `nagios-prowl.pl` are correct. If you have a provider API key (and you
   should), be sure to fill it in. If you don't, remove the `-p <PROVIDER_KEY>`
-  bit from each command.
+  bit from each command. Also update `<URL_TO_NAGIOS_CGI-BIN>` with the URL to
+  your Nagios cgi-bin.
 ```
     define command {
         command_name notify-host-by-prowl
