@@ -23,6 +23,7 @@ Allows you to send cleanly formatted Prowl notifications for Nagios alerts.
   should), be sure to fill it in. If you don't, remove the `-p <PROVIDER_KEY>`
   bit from each command. Also update `<URL_TO_NAGIOS_CGI-BIN>` with the URL to
   your Nagios cgi-bin.
+
 ```
     define command {
         command_name notify-host-by-prowl
@@ -34,7 +35,9 @@ Allows you to send cleanly formatted Prowl notifications for Nagios alerts.
         command_line /usr/local/bin/nagios-prowl.pl -p <PROVIDER_KEY> -u "<URL_TO_NAGIOS_CGI-BIN>" -t "$LONGDATETIME$" -N "$NOTIFICATIONTYPE$" -s "$SERVICESTATE$" -H "$HOSTNAME$" -S "$SERVICEDESC$" -o "$HOSTOUTPUT$" -a "$_CONTACTPROWL_APIKEYS$"
     }
 ```
+
   * Add the following to contact records you'd like Prowl notifications for:
+
 ```
     define contact {
          service_notification_commands <WHAT_YOU_HAD_BEFORE>,notify-service-by-prowl
